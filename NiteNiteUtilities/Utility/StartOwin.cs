@@ -1,4 +1,6 @@
 ﻿using System.Web.Http;
+using Microsoft.Owin.StaticFiles;
+using Microsoft.Owin.FileSystems;
 using Owin;
 
 namespace NiteNiteUtilities.Utility
@@ -21,6 +23,13 @@ namespace NiteNiteUtilities.Utility
                 defaults: new { id = RouteParameter.Optional });
 
             builder.UseWebApi(config);
+
+            // we need to configure 
+            builder.UseFileServer(new FileServerOptions
+            {
+                FileSystem = new PhysicalFileSystem("public"),
+                EnableDirectoryBrowsing = false
+            });
         }
 
         #endregion
