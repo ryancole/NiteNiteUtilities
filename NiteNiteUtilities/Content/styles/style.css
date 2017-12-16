@@ -1,0 +1,19 @@
+body {
+  font-family: "Etna";
+}
+
+#follower-container {
+  visibility: hidden;
+}
+
+#follower-container p {
+  margin: 0;
+}
+
+#follower-name {
+  line-height: 1;
+}
+
+.tiny-text {
+  font-size: 8px;
+}
