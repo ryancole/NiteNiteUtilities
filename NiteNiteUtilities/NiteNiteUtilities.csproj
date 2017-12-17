@@ -77,10 +77,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\TwitchFollowerController.cs" />
+    <Compile Include="Controllers\TwitchUserController.cs" />
+    <Compile Include="Controllers\TwitchWebhookCallbackController.cs" />
+    <Compile Include="Controllers\TwitchWebhookController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\OwinService.cs" />
     <Compile Include="Utility\StartOwin.cs" />
+    <Compile Include="View\TwitchWebhookUserFollowsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -108,6 +113,12 @@
     <Content Include="Public\Style\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NiteNiteUtilities.Repository\NiteNiteUtilities.Repository.csproj">
+      <Project>{294880eb-2210-42d6-a89c-499a15ed7f16}</Project>
+      <Name>NiteNiteUtilities.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
