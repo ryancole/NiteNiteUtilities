@@ -2,7 +2,7 @@
 
 namespace NiteNiteUtilities.Controllers
 {
-    public class HomeController : ApiController
+    public class DataController : ApiController
     {
         #region Methods
 

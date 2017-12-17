@@ -28,7 +28,8 @@ namespace NiteNiteUtilities.Utility
             builder.UseFileServer(new FileServerOptions
             {
                 FileSystem = new PhysicalFileSystem("public"),
-                EnableDirectoryBrowsing = false
+                EnableDefaultFiles = false,
+                EnableDirectoryBrowsing = true
             });
         }
 
