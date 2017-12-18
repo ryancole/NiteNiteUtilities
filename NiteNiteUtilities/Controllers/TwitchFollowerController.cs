@@ -9,7 +9,7 @@ namespace NiteNiteUtilities.Controllers
     {
         #region Methods
 
-        public async Task<GetTwitchFollowerView> Get(int id)
+        public async Task<GetTwitchFollowerView> Get(string id)
         {
             var follower = await TwitchFollowerRepository.Get(id);
 

@@ -10,7 +10,7 @@ namespace NiteNiteUtilities.Repository
     {
         #region Methods
 
-        async public static Task<GetTwitchFollowerView> Get(int id)
+        async public static Task<GetTwitchFollowerView> Get(string id)
         {
             var request = HttpWebRequest.Create($"https://api.twitch.tv/helix/users/follows?to_id={id}");
 
