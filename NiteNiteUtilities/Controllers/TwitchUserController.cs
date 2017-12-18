@@ -9,9 +9,9 @@ namespace NiteNiteUtilities.Controllers
     {
         #region Methods
 
-        public async Task<GetTwitchUserView> Get()
+        public async Task<GetTwitchUserView> Get(string name)
         {
-            var user = await TwitchUserRepository.Get();
+            var user = await TwitchUserRepository.Get(name);
 
             return user;
         }

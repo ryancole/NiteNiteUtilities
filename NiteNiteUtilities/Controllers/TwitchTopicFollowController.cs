@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Net;
-using System.Text;
 using System.Linq;
 using System.Web.Http;
 using System.Net.Http;
 
 namespace NiteNiteUtilities.Controllers
 {
-    public class TwitchWebhookCallbackController : ApiController
+    public class TwitchTopicFollowController : ApiController
     {
         #region Methods
 
@@ -32,11 +31,15 @@ namespace NiteNiteUtilities.Controllers
                 };
             }
 
+            Console.WriteLine($"GET TwitchTopicFollow, mode = {mode}");
+
             if (mode.Equals("subscribe", StringComparison.OrdinalIgnoreCase))
             {
                 // now that we know we've been granted the subscription, we
                 // need to respond with the proper challenge
                 var challenge = query.First(m => m.Key.Equals("hub.challenge", StringComparison.OrdinalIgnoreCase)).Value;
+
+                Console.WriteLine($"GET TwitchTopicFollow, challenge = {challenge}");
 
                 return new HttpResponseMessage
                 {
@@ -55,7 +58,7 @@ namespace NiteNiteUtilities.Controllers
 
         public IHttpActionResult Post()
         {
-            Console.WriteLine("got event!");
+            Console.WriteLine("Received event!");
 
             return Ok();
         }

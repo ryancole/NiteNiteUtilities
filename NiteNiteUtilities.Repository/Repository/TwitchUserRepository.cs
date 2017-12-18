@@ -10,13 +10,9 @@ namespace NiteNiteUtilities.Repository
     {
         #region Methods
 
-        async public static Task<GetTwitchUserView> Get()
+        async public static Task<GetTwitchUserView> Get(string name)
         {
-            // we need the username that we want need to fetch information
-            // about. this is set by the user and needs to be their username
-            var username = ConfigurationManager.AppSettings["TwitchUsername"];
-
-            var request = HttpWebRequest.Create($"https://api.twitch.tv/helix/users?login={username}");
+            var request = HttpWebRequest.Create($"https://api.twitch.tv/helix/users?login={name}");
 
             // the request needs to include the user's own application client
             // identifier, which comes from the config

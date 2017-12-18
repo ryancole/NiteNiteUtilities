@@ -79,7 +79,7 @@
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\TwitchFollowerController.cs" />
     <Compile Include="Controllers\TwitchUserController.cs" />
-    <Compile Include="Controllers\TwitchWebhookCallbackController.cs" />
+    <Compile Include="Controllers\TwitchTopicFollowController.cs" />
     <Compile Include="Controllers\TwitchWebhookController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
