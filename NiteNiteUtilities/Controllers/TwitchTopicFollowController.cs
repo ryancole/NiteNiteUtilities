@@ -3,6 +3,8 @@ using System.Net;
 using System.Linq;
 using System.Web.Http;
 using System.Net.Http;
+using NiteNiteUtilities.View;
+using NiteNiteUtilities.Utility;
 
 namespace NiteNiteUtilities.Controllers
 {
@@ -31,15 +33,29 @@ namespace NiteNiteUtilities.Controllers
                 };
             }
 
-            Console.WriteLine($"GET TwitchTopicFollow, mode = {mode}");
-
             if (mode.Equals("subscribe", StringComparison.OrdinalIgnoreCase))
             {
+                // we may already be subscribed and receiving events from this
+                // subscription, so lets reject any other subscriptions that
+                // may be pending
+                if (PersistantRuntimeData.AlreadySubcribed)
+                {
+                    return new HttpResponseMessage
+                    {
+                        StatusCode = HttpStatusCode.Conflict
+                    };
+                }
+
                 // now that we know we've been granted the subscription, we
                 // need to respond with the proper challenge
                 var challenge = query.First(m => m.Key.Equals("hub.challenge", StringComparison.OrdinalIgnoreCase)).Value;
 
-                Console.WriteLine($"GET TwitchTopicFollow, challenge = {challenge}");
+                // we need to make note that we are now going to be receiving
+                // events from this subscription and so we can reject any other
+                // subscription attempts that may be coming in
+                PersistantRuntimeData.AlreadySubcribed = true;
+
+                Console.WriteLine($"Confirming twitch follower event request using {challenge} ...");
 
                 return new HttpResponseMessage
                 {
@@ -56,9 +72,14 @@ namespace NiteNiteUtilities.Controllers
             }
         }
 
-        public IHttpActionResult Post()
+        public IHttpActionResult Post(TwitchWebhookUserFollowsView payload)
         {
-            Console.WriteLine("Received event!");
+            Console.WriteLine($"Received follower event for {payload.Data.From} ...");
+
+            // we're just going to store incoming follower events in a queue so
+            // that we can pop off of it as needed and we won't lose followers
+            // across scene changes or unloading of the browser source
+            PersistantRuntimeData.Followers.Enqueue(payload);
 
             return Ok();
         }

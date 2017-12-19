@@ -1,7 +1,9 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
 using System.Threading.Tasks;
+using NiteNiteUtilities.Utility;
 using NiteNiteUtilities.Repository;
-using NiteNiteUtilities.Repository.View;
+using NiteNiteUtilities.Repository.Model;
 
 namespace NiteNiteUtilities.Controllers
 {
@@ -9,11 +11,26 @@ namespace NiteNiteUtilities.Controllers
     {
         #region Methods
 
-        public async Task<GetTwitchFollowerView> Get(string id)
+        async public Task<TwitchUser> Get()
         {
-            var follower = await TwitchFollowerRepository.Get(id);
+            try
+            {
+                // all we want to do is pop the next follower off the queue so that
+                // the browser source can be unloaded and we won't lose track of
+                // any followers in the process
+                var follower = PersistantRuntimeData.Followers.Dequeue();
 
-            return follower;
+                // now we need to out to twitch again and fetch the display name of
+                // the person who followed
+                var details = await TwitchUserRepository.GetById(follower.Data.From);
+
+                // we only want to respond with the user details
+                return details.Users.Single();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         #endregion

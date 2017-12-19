@@ -1,30 +1,24 @@
 ﻿using System.Collections.Generic;
+using NiteNiteUtilities.View;
 using NiteNiteUtilities.Repository.Model;
 
 namespace NiteNiteUtilities.Utility
 {
-    public class PersistantRuntimeData
+    public static class PersistantRuntimeData
     {
         static PersistantRuntimeData()
         {
-            Instance = new PersistantRuntimeData();
-        }
-
-        public PersistantRuntimeData()
-        {
-            FollowerCount = 0;
-            RecentFollows = new List<TwitchFollower>();
+            Followers = new Queue<TwitchWebhookUserFollowsView>();
+            AlreadySubcribed = false;
         }
 
         #region Properties
 
-        public int FollowerCount { get; set; }
+        public static bool AlreadySubcribed { get; set; }
 
-        public TwitchUser Me { get; set; }
+        public static TwitchUser Me { get; set; }
 
-        public ICollection<TwitchFollower> RecentFollows { get; set; }
-
-        public static PersistantRuntimeData Instance { get; }
+        public static Queue<TwitchWebhookUserFollowsView> Followers { get; set; }
 
         #endregion
     }

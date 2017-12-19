@@ -13,11 +13,16 @@ namespace NiteNiteUtilities.Utility
 
         #region Methods
 
-        public void Start()
+        public async Task Start()
         {
             var port = ConfigurationManager.AppSettings["port"];
 
+            // start up the web application prior to requesting the twitch data
+            // so that our web hook callbacks are active
             m_app = WebApp.Start<StartOwin>($"http://+:{port}");
+
+            // fetch our initial data from twitch
+            await FetchInitialTwitchData();
         }
 
         public void Stop()
@@ -29,11 +34,17 @@ namespace NiteNiteUtilities.Utility
         {
             var username = ConfigurationManager.AppSettings["TwitchUsername"];
 
-            // fetch details of ours twitch user account
-            var me = (await TwitchUserRepository.Get(username)).Users.Single();
+            Console.WriteLine($"Fetching twitch user id for {username} ... ");
 
-            // set global persisted data
-            PersistantRuntimeData.Instance.Me = me;
+            // we need to fetch our user details so that we can request web
+            // hook event data from twitch
+            PersistantRuntimeData.Me = (await TwitchUserRepository.GetByName(username)).Users.Single();
+
+            Console.WriteLine($"Requesting twitch follower notifications for {PersistantRuntimeData.Me.Id} ... ");
+
+            // now that we have our own user data, we can request the web hook
+            // event data
+            var response = await TwitchWebhookRepository.Get(PersistantRuntimeData.Me.Id);
         }
 
         #endregion

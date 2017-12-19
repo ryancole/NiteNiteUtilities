@@ -12,7 +12,7 @@ namespace NiteNiteUtilities
                 host.Service<OwinService>(service =>
                 {
                     service.ConstructUsing(() => new OwinService());
-                    service.WhenStarted(s => s.Start());
+                    service.WhenStarted(async s => await s.Start());
                     service.WhenStopped(s => s.Stop());
                 });
             });
