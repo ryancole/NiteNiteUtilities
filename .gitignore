@@ -3,4 +3,5 @@ obj/
 packages/
 
 *.pdb
+*.xml
 *.csproj.user
