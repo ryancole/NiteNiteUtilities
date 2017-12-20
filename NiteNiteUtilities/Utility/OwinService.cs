@@ -44,7 +44,9 @@ namespace NiteNiteUtilities.Utility
 
             // now that we have our own user data, we can request the web hook
             // event data
-            var response = await TwitchWebhookRepository.Get(PersistantRuntimeData.Me.Id);
+            var response = await TwitchWebhookRepository.Get(
+                PersistantRuntimeData.Me.Id,
+                PersistantRuntimeData.Guid);
         }
 
         #endregion

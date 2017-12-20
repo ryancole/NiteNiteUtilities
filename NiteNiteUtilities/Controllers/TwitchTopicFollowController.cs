@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Net.Http;
 using NiteNiteUtilities.View;
+using NiteNiteUtilities.Filters;
 using NiteNiteUtilities.Utility;
 
 namespace NiteNiteUtilities.Controllers
@@ -35,25 +36,9 @@ namespace NiteNiteUtilities.Controllers
 
             if (mode.Equals("subscribe", StringComparison.OrdinalIgnoreCase))
             {
-                // we may already be subscribed and receiving events from this
-                // subscription, so lets reject any other subscriptions that
-                // may be pending
-                if (PersistantRuntimeData.AlreadySubcribed)
-                {
-                    return new HttpResponseMessage
-                    {
-                        StatusCode = HttpStatusCode.Conflict
-                    };
-                }
-
                 // now that we know we've been granted the subscription, we
                 // need to respond with the proper challenge
                 var challenge = query.First(m => m.Key.Equals("hub.challenge", StringComparison.OrdinalIgnoreCase)).Value;
-
-                // we need to make note that we are now going to be receiving
-                // events from this subscription and so we can reject any other
-                // subscription attempts that may be coming in
-                PersistantRuntimeData.AlreadySubcribed = true;
 
                 Console.WriteLine($"Confirming twitch follower event request using {challenge} ...");
 
@@ -72,6 +57,7 @@ namespace NiteNiteUtilities.Controllers
             }
         }
 
+        [TwitchSecretAuthorization]
         public IHttpActionResult Post(TwitchWebhookUserFollowsView payload)
         {
             Console.WriteLine($"Received follower event for {payload.Data.From} ...");

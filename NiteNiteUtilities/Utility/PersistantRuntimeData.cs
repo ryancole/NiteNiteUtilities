@@ -8,13 +8,13 @@ namespace NiteNiteUtilities.Utility
     {
         static PersistantRuntimeData()
         {
+            Guid = System.Guid.NewGuid().ToString();
             Followers = new Queue<TwitchWebhookUserFollowsView>();
-            AlreadySubcribed = false;
         }
 
         #region Properties
 
-        public static bool AlreadySubcribed { get; set; }
+        public static string Guid { get; }
 
         public static TwitchUser Me { get; set; }
 

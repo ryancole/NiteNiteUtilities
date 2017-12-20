@@ -8,7 +8,7 @@ namespace NiteNiteUtilities.Repository
     {
         #region Methods
 
-        async public static Task<HttpStatusCode> Get(string id)
+        async public static Task<HttpStatusCode> Get(string id, string guid)
         {
             var port = ConfigurationManager.AppSettings["Port"];
             var fqdn = ConfigurationManager.AppSettings["FullyQualifiedDomainName"];
@@ -17,6 +17,7 @@ namespace NiteNiteUtilities.Repository
             {
                 "hub.mode=subscribe",
                 "hub.lease_seconds=864000",
+                $"hub.secret={guid}",
                 $"hub.topic=https://api.twitch.tv/helix/users/follows?to_id={id}",
                 $"hub.callback=http://{fqdn}:{port}/Api/TwitchTopicFollow"
             };
