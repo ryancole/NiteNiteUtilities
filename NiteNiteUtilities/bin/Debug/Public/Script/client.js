@@ -1,6 +1,8 @@
 
 // get the dom element that contains the follower name
+const toastyElement = document.getElementById("toasty");
 const followerElement = document.getElementById("follower");
+const followerContainerElement = document.getElementById("follower-container");
 
 async function fetchNextFollower() {
 	// we need to fetch the details of a most recent follower, if any
@@ -26,7 +28,10 @@ async function displayNextFollower() {
 		followerElement.textContent = follower.display_name;
 
 		// add the animation class
-		followerElement.classList.add("slideLeft");
+		followerContainerElement.classList.remove("invisible");
+
+		// play the toasty sound
+		toastyElement.play();
 	} catch (ex) {}
 
 	// in ten seconds we want to hide the follower
@@ -35,7 +40,7 @@ async function displayNextFollower() {
 
 function hideCurrentFollower() {
 	// remove the animation class, which also hides the element
-	followerElement.classList.remove("slideLeft");
+	followerContainerElement.classList.add("invisible");
 
 	// in two seconds we want to show the next follower
 	setTimeout(displayNextFollower, 2000);

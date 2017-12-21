@@ -1,11 +1,26 @@
-body {
-  font-family: "Etna";
+#logo {
+	min-height: 46px;
+	background-image: url("/image/NiteNite_OBS_TopName.png");
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
-#follower {
-  color: white;
-  font-size: 32px;
-  visibility: hidden;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  text-transform: uppercase;
+#follower-container {
+  text-align: center;
+  transition: all 1s ease;
+  font-family: "Roboto";
+}
+
+#follower-container p {
+  font-size: 12px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+#follower-container span {
+  font-size: 26px;
+}
+
+.invisible {
+	opacity: 0;
 }
