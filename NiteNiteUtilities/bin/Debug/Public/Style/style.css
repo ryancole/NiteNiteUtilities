@@ -1,8 +1,8 @@
 #logo {
-	min-height: 46px;
-	background-image: url("/image/NiteNite_OBS_TopName.png");
-	background-repeat: no-repeat;
-	background-position: center;
+  min-height: 46px;
+  background-image: url("/image/NiteNite_OBS_TopName.png");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #follower-container {
@@ -22,5 +22,5 @@
 }
 
 .invisible {
-	opacity: 0;
+  opacity: 0;
 }

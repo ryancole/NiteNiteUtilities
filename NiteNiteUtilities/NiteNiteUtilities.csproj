@@ -99,10 +99,7 @@
     <Content Include="Public\Image\NiteNite_OBS_TopName.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Public\logo-right.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Public\logo-left.html">
+    <Content Include="Public\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Public\Script\client.js">
