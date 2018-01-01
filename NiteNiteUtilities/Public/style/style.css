@@ -1,5 +1,5 @@
 body#blur-page {
-	background-color: #eee;
+	background-color: #00ff00;
 }
 
 #blur {
@@ -9,7 +9,6 @@ body#blur-page {
   height: 100%;
   filter: blur(10px);
   position: fixed;
-  background-color: transparent;
 }
 
 #logo {
