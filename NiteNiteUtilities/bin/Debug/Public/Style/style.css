@@ -7,7 +7,6 @@
 
 #follower-container {
   color: white;
-  font-size: 2em;
   text-align: center;
   transition: all 1s ease;
   font-family: "Roboto";
@@ -15,8 +14,14 @@
 }
 
 #follower-container p {
+  font-size: 2em;
   margin-bottom: 0px;
   padding-bottom: 0px;
+}
+
+#follower-container span {
+  font-size: 3em;
+  font-weight: bolder;
 }
 
 .invisible {
