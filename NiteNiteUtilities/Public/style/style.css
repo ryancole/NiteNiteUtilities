@@ -1,3 +1,12 @@
+#blur {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(10px);
+  position: fixed;
+}
+
 #logo {
   min-height: 46px;
   background-image: url("/image/NiteNite_OBS_TopName.png");
