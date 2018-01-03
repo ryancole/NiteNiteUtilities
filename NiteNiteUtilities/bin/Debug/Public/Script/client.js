@@ -1,8 +1,8 @@
 
-// get the dom element that contains the follower name
 const toastyElement = document.getElementById("toasty");
+
 const followerElement = document.getElementById("follower");
-const followerContainerElement = document.getElementById("follower-container");
+const followerContainerElement = document.getElementById("followerContainer");
 
 async function fetchNextFollower() {
 	// we need to fetch the details of a most recent follower, if any
