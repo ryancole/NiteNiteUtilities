@@ -23,6 +23,11 @@ async function displayNextFollower() {
 	// first we gotta fetch a follower
 	const follower = await fetchNextFollower();
 
+	// if there's no new follower, abort and keep current one showing
+	if (!follower) {
+		return;
+	}
+
 	// set the element text to the follower name
 	followerElement.textContent = follower.display_name;
 
@@ -32,16 +37,8 @@ async function displayNextFollower() {
 	// play the toasty sound
 	toastyElement.play();
 
-	// in ten seconds we want to hide the follower
-	setTimeout(hideCurrentFollower, 10000);
-}
-
-function hideCurrentFollower() {
-	// remove the animation class, which also hides the element
-	followerContainerElement.classList.add("invisible");
-
-	// in two seconds we want to show the next follower
-	setTimeout(displayNextFollower, 2000);
+	// in ten seconds we want to show the next follower
+	setTimeout(displayNextFollower, 10000);
 }
 
 // in five seconds we want to start showing followers
