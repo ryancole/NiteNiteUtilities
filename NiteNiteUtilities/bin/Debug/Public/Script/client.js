@@ -20,19 +20,17 @@ async function fetchNextFollower() {
 }
 
 async function displayNextFollower() {
-	try {
-		// first we gotta fetch a follower
-		const follower = await fetchNextFollower();
+	// first we gotta fetch a follower
+	const follower = await fetchNextFollower();
 
-		// set the element text to the follower name
-		followerElement.textContent = follower.display_name;
+	// set the element text to the follower name
+	followerElement.textContent = follower.display_name;
 
-		// add the animation class
-		followerContainerElement.classList.remove("invisible");
+	// add the animation class
+	followerContainerElement.classList.remove("invisible");
 
-		// play the toasty sound
-		toastyElement.play();
-	} catch (ex) {}
+	// play the toasty sound
+	toastyElement.play();
 
 	// in ten seconds we want to hide the follower
 	setTimeout(hideCurrentFollower, 10000);
