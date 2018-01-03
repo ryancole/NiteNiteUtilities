@@ -22,7 +22,7 @@ namespace NiteNiteUtilities.Controllers
 
                 // now we need to out to twitch again and fetch the display name of
                 // the person who followed
-                var details = await TwitchUserRepository.GetById(follower.Data.From);
+                var details = await TwitchUserRepository.GetById(follower.From);
 
                 // we only want to respond with the user details
                 return Json(details.Users.Single());

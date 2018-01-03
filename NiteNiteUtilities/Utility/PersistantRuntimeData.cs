@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using NiteNiteUtilities.View;
 using NiteNiteUtilities.Repository.Model;
 
 namespace NiteNiteUtilities.Utility
@@ -9,7 +8,7 @@ namespace NiteNiteUtilities.Utility
         static PersistantRuntimeData()
         {
             Guid = System.Guid.NewGuid().ToString();
-            Followers = new Queue<TwitchWebhookUserFollowsView>();
+            Followers = new Queue<FollowerQueueData>();
         }
 
         #region Properties
@@ -18,7 +17,18 @@ namespace NiteNiteUtilities.Utility
 
         public static TwitchUser Me { get; set; }
 
-        public static Queue<TwitchWebhookUserFollowsView> Followers { get; set; }
+        public static Queue<FollowerQueueData> Followers { get; set; }
+
+        #endregion
+    }
+
+    public class FollowerQueueData
+    {
+        #region Properties
+
+        public string To { get; set; }
+
+        public string From { get; set; }
 
         #endregion
     }

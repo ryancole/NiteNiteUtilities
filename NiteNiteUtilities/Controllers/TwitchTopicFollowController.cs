@@ -65,7 +65,11 @@ namespace NiteNiteUtilities.Controllers
             // we're just going to store incoming follower events in a queue so
             // that we can pop off of it as needed and we won't lose followers
             // across scene changes or unloading of the browser source
-            PersistantRuntimeData.Followers.Enqueue(payload);
+            PersistantRuntimeData.Followers.Enqueue(new FollowerQueueData
+            {
+                To = payload.Data.To,
+                From = payload.Data.From
+            });
 
             return Ok();
         }
