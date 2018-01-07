@@ -2,6 +2,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.animated {
+  animation-name: slideDown, slideUpRight;
+  animation-delay: 0s, 5s;
+  animation-duration: 5s, 3s;
+}
+
 #logo {
   min-height: 46px;
   background-image: url("/image/NiteNite_OBS_TopName.png");
@@ -9,18 +15,37 @@ body {
   background-position: center;
 }
 
-#followerContainer {
-  color: #00ade7;
-  font-size: 8px;
-  transition: all 1s ease;
-}
-
 #follower {
   font-size: 20px;
-  line-height: 16px;
   font-weight: 800;
 }
 
-.invisible {
-  opacity: 0;
+#nameSlideDownContainer {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+#nameSlideDownContainer #nameSlideDown {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    margin-top: -100px;
+  }
+
+  20% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes slideUpRight {
+  to {
+  	transform: translate(170px, -100px);
+	font-size: 20px;
+  }
 }
