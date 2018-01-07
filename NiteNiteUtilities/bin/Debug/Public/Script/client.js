@@ -27,6 +27,8 @@ async function displayNextFollower() {
   if (follower) {
     beginAnimation(follower);
     toastyElement.play();
+  } else {
+    setTimeout(displayNextFollower, 1000);
   }
 }
 
