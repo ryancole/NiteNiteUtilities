@@ -13,6 +13,8 @@ namespace NiteNiteUtilities.Utility
 
         #region Properties
 
+        public static string Ip { get; set; }
+
         public static string Guid { get; }
 
         public static TwitchUser Me { get; set; }

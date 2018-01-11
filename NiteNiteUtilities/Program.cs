@@ -9,12 +9,7 @@ namespace NiteNiteUtilities
         {
             var exitCode = HostFactory.Run(host =>
             {
-                host.Service<OwinService>(service =>
-                {
-                    service.ConstructUsing(() => new OwinService());
-                    service.WhenStarted(async s => await s.Start());
-                    service.WhenStopped(s => s.Stop());
-                });
+                host.Service<OwinService>();
             });
 
             return (int)exitCode;

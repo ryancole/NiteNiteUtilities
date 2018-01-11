@@ -45,6 +45,7 @@
     <Compile Include="Model\TwitchFollower.cs" />
     <Compile Include="Model\TwitchUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IpifyRepository.cs" />
     <Compile Include="Repository\TwitchFollowerRepository.cs" />
     <Compile Include="Repository\TwitchUserRepository.cs" />
     <Compile Include="Repository\TwitchWebhookRepository.cs" />

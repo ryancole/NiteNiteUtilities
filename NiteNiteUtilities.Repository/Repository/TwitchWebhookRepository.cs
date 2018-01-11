@@ -8,10 +8,9 @@ namespace NiteNiteUtilities.Repository
     {
         #region Methods
 
-        async public static Task<HttpStatusCode> Get(string id, string guid)
+        async public static Task<HttpStatusCode> Get(string fqdn, string id, string guid)
         {
             var port = ConfigurationManager.AppSettings["Port"];
-            var fqdn = ConfigurationManager.AppSettings["FullyQualifiedDomainName"];
 
             var query = new[]
             {

@@ -3,18 +3,32 @@ using System.Linq;
 using System.Configuration;
 using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
-using NiteNiteUtilities.View;
+using Topshelf;
 using NiteNiteUtilities.Repository;
 
 namespace NiteNiteUtilities.Utility
 {
-    public class OwinService
+    public class OwinService : ServiceControl
     {
         private IDisposable m_app;
 
         #region Methods
 
-        public async Task Start()
+        public bool Start(HostControl hostControl)
+        {
+            StartWebServer();
+
+            return true;
+        }
+
+        public bool Stop(HostControl hostControl)
+        {
+            m_app.Dispose();
+
+            return true;
+        }
+
+        private async void StartWebServer()
         {
             var port = ConfigurationManager.AppSettings["port"];
 
@@ -26,13 +40,12 @@ namespace NiteNiteUtilities.Utility
             await FetchInitialTwitchData();
         }
 
-        public void Stop()
-        {
-            m_app.Dispose();
-        }
-
         private async Task FetchInitialTwitchData()
         {
+            Console.WriteLine("Fetching public IP address ...");
+
+            PersistantRuntimeData.Ip = await IpifyRepository.Get();
+
             var username = ConfigurationManager.AppSettings["TwitchUsername"];
 
             Console.WriteLine($"Fetching twitch user id for {username} ... ");
@@ -66,6 +79,7 @@ namespace NiteNiteUtilities.Utility
             // now that we have our own user data, we can request the web hook
             // event data
             var response = await TwitchWebhookRepository.Get(
+                PersistantRuntimeData.Ip,
                 PersistantRuntimeData.Me.Id,
                 PersistantRuntimeData.Guid);
         }
