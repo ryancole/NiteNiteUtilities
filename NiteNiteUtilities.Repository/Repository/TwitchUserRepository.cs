@@ -33,7 +33,7 @@ namespace NiteNiteUtilities.Repository
 
         async public static Task<GetTwitchUserView> GetByName(string name)
         {
-            var request = HttpWebRequest.Create($"https://api.twitch.tv/helix/users?login={name}");
+            var request = HttpWebRequest.Create($"https://api.twitch.tv/helix/users?login={name.ToLower()}");
 
             // the request needs to include the user's own application client
             // identifier, which comes from the config

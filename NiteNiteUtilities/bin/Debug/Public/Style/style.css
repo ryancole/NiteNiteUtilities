@@ -1,12 +1,12 @@
 body {
-  color: white;
+  color: #01eaff;
   font-family: 'Open Sans', sans-serif;
 }
 
 .animated {
-  animation-name: slideDown, slideUpRight;
-  animation-delay: 0s, 5s;
-  animation-duration: 5s, 3s;
+  animation-name: slideDown, slideUp;
+  animation-delay: 0s, 8s;
+  animation-duration: 2s, 2s;
 }
 
 #logo {
@@ -16,15 +16,11 @@ body {
   background-position: center;
 }
 
-#follower {
-  font-size: 20px;
-  font-weight: 800;
-}
-
 #nameSlideDownContainer {
   font-size: 20px;
   text-align: center;
   font-weight: 600;
+  -webkit-text-stroke: 1px #00bcce;
 }
 
 #nameSlideDownContainer #nameSlideDown {
@@ -32,21 +28,26 @@ body {
   font-weight: 800;
 }
 
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    margin-top: 0px;
+  }
+
+  to {
+    opacity: 0;
+  	margin-top: -100px;
+  }
+}
+
 @keyframes slideDown {
-  0% {
+  from {
     opacity: 0;
     margin-top: -100px;
   }
 
-  20% {
+  to {
     opacity: 1;
     margin-top: 0px;
-  }
-}
-
-@keyframes slideUpRight {
-  to {
-  	transform: translate(170px, -100px);
-	font-size: 20px;
   }
 }

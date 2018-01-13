@@ -1,8 +1,6 @@
 
 const toastyElement = document.getElementById("toasty");
 
-const followerElement = document.getElementById("follower");
-
 const nameSlideDownElement = document.getElementById("nameSlideDown");
 const nameSlideDownContainerElement = document.getElementById("nameSlideDownContainer");
 const nameSlideDownParagraphElements = document.querySelectorAll("#nameSlideDownContainer p");
@@ -39,9 +37,7 @@ function beginAnimation(follower) {
 }
 
 function handleAnimationEnd(event) {
-  if (event.animationName == "slideUpRight") {
-    const name = event.target.textContent;
-	followerElement.textContent = name;
+  if (event.animationName == "slideUp") {
 	nameSlideDownContainerElement.classList.add("invisible");
 	nameSlideDownParagraphElements.forEach(e => e.classList.remove("animated"));
 	setTimeout(displayNextFollower, 1000);
