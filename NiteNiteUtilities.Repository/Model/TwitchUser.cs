@@ -16,6 +16,9 @@ namespace NiteNiteUtilities.Repository.Model
         [DataMember(Name = "display_name")]
         public string DisplayName { get; set; }
 
+        [DataMember(Name = "profile_image_url")]
+        public string ProfileImageUrl { get; set; }
+
         #endregion
     }
 }

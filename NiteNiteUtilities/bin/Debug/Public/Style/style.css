@@ -16,14 +16,20 @@ body {
   background-position: center;
 }
 
-#nameSlideDownContainer {
+#followerContainer {
   font-size: 20px;
   text-align: center;
   font-weight: 600;
   -webkit-text-stroke: 1px #00bcce;
 }
 
-#nameSlideDownContainer #nameSlideDown {
+#followerContainer #followerLogo {
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#followerContainer #followerName {
   font-size: 32px;
   font-weight: 800;
 }

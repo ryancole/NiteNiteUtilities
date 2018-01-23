@@ -1,9 +1,9 @@
 
 const toastyElement = document.getElementById("toasty");
 
-const nameSlideDownElement = document.getElementById("nameSlideDown");
-const nameSlideDownContainerElement = document.getElementById("nameSlideDownContainer");
-const nameSlideDownParagraphElements = document.querySelectorAll("#nameSlideDownContainer p");
+const logoSlideDownElement = document.getElementById("followerLogo");
+const nameSlideDownElement = document.getElementById("followerName");
+const nameSlideDownContainerElement = document.getElementById("followerContainer");
 
 async function fetchNextFollower() {
 	// we need to fetch the details of a most recent follower, if any
@@ -31,21 +31,32 @@ async function displayNextFollower() {
 }
 
 function beginAnimation(follower) {
+  // set text and background logo
+  logoSlideDownElement.style.backgroundImage = `url('${follower.profile_image_url}')`;
   nameSlideDownElement.textContent = follower.display_name;
+
+  // make follower visible
   nameSlideDownContainerElement.classList.remove("invisible");
-  nameSlideDownParagraphElements.forEach(e => e.classList.add("animated"));
+
+  // begin animation
+  nameSlideDownContainerElement.classList.add("animated");
 }
 
 function handleAnimationEnd(event) {
   if (event.animationName == "slideUp") {
+    // make follower invisible
 	nameSlideDownContainerElement.classList.add("invisible");
-	nameSlideDownParagraphElements.forEach(e => e.classList.remove("animated"));
+
+	// end animation
+	nameSlideDownContainerElement.classList.remove("animated");
+
+	// queue up next follower
 	setTimeout(displayNextFollower, 1000);
   }
 }
 
 // register our event listeners
-nameSlideDownElement.addEventListener("animationend", handleAnimationEnd, false);
+nameSlideDownContainerElement.addEventListener("animationend", handleAnimationEnd, false);
 
 // in seconds we want to start showing followers
 setTimeout(displayNextFollower, 2000);
