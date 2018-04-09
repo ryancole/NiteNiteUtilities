@@ -96,9 +96,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Public\Image\NiteNite_OBS_TopName.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Public\Image\RyanLeslieOBSIcon.png" />
     <Content Include="Public\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

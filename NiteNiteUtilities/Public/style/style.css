@@ -10,8 +10,8 @@ body {
 }
 
 #logo {
-  min-height: 46px;
-  background-image: url("/image/NiteNite_OBS_TopName.png");
+  height: 50px;
+  background-image: url("/image/RyanLeslieOBSIcon.png");
   background-repeat: no-repeat;
   background-position: center;
 }
