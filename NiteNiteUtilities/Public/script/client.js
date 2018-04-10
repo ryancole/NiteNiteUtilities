@@ -1,9 +1,39 @@
 
+const logoIcon = document.getElementById("logo-icon");
+const twitchFollowReminder = document.getElementById("twitch-follow-reminder");
+
 const toastyElement = document.getElementById("toasty");
 
 const logoSlideDownElement = document.getElementById("followerLogo");
 const nameSlideDownElement = document.getElementById("followerName");
 const nameSlideDownContainerElement = document.getElementById("followerContainer");
+
+function beginTopRoller() {
+  let currentIndex = 0;
+  const possibleItems = [
+    { el: logoIcon, duration: 5000 },
+	{ el: twitchFollowReminder, duration: 5000 }
+  ];
+  function nextIndex() {
+    if (currentIndex + 1 >= possibleItems.length) {
+	  currentIndex = 0;
+	} else {
+	  currentIndex += 1;
+	}
+	return currentIndex;
+  }
+  function cycle() {
+    // hide current item
+	const current = possibleItems[currentIndex];
+	current.classList.add("d-none");
+	// show next item
+	const next = possibleItems[nextIndex()];
+	next.classList.remove("d-none");
+	// queue up the next cycle
+	setTimeout(cycle, next.duration);
+  }
+  setTimeout(cycle, 0);
+}
 
 async function fetchNextFollower() {
 	// we need to fetch the details of a most recent follower, if any
@@ -39,7 +69,7 @@ function beginAnimation(follower) {
   nameSlideDownContainerElement.classList.remove("invisible");
 
   // begin animation
-  nameSlideDownContainerElement.classList.add("animated");
+  nameSlideDownContainerElement.classList.add("new-follower-animation");
 }
 
 function handleAnimationEnd(event) {
@@ -48,7 +78,7 @@ function handleAnimationEnd(event) {
 	nameSlideDownContainerElement.classList.add("invisible");
 
 	// end animation
-	nameSlideDownContainerElement.classList.remove("animated");
+	nameSlideDownContainerElement.classList.remove("new-follower-animation");
 
 	// queue up next follower
 	setTimeout(displayNextFollower, 1000);
@@ -60,3 +90,6 @@ nameSlideDownContainerElement.addEventListener("animationend", handleAnimationEn
 
 // in seconds we want to start showing followers
 setTimeout(displayNextFollower, 2000);
+
+// start our top roller
+beginTopRoller();

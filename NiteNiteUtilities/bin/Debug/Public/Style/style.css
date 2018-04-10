@@ -3,17 +3,20 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.animated {
+.new-follower-animation {
   animation-name: slideDown, slideUp;
   animation-delay: 0s, 8s;
   animation-duration: 2s, 2s;
 }
 
-#logo {
+#logo-icon {
+  width: 72px;
   height: 50px;
-  background-image: url("/image/RyanLeslieOBSIcon.png");
-  background-repeat: no-repeat;
-  background-position: center;
+}
+
+#twitch-icon {
+  width: 50px;
+  height: 50px;
 }
 
 #followerContainer {
