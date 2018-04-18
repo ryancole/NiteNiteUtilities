@@ -1,0 +1,16 @@
+{
+  "name": "ryanleslie-overlay",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm": "^5.8.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}

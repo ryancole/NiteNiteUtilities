@@ -5,3 +5,5 @@ packages/
 *.pdb
 *.xml
 *.csproj.user
+
+node_modules/
