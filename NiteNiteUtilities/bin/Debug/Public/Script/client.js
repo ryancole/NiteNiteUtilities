@@ -24,11 +24,11 @@ function beginTopRoller() {
   }
   function cycle() {
     // hide current item
-	const current = possibleItems[currentIndex];
+	const current = possibleItems[currentIndex].el;
 	current.classList.add("d-none");
 	// show next item
 	const next = possibleItems[nextIndex()];
-	next.classList.remove("d-none");
+	next.el.classList.remove("d-none");
 	// queue up the next cycle
 	setTimeout(cycle, next.duration);
   }
